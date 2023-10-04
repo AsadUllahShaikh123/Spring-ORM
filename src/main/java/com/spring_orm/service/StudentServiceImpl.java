@@ -11,7 +11,6 @@ public class StudentServiceImpl implements StudentService {
 
 	@Autowired
 	private StudentDao dao;
-	@Override
 	public int saveUser(Student student) {
 		int inserted = dao.insert(student);
 		return inserted;

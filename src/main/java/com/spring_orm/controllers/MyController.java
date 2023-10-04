@@ -1,6 +1,5 @@
 package com.spring_orm.controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -14,29 +13,29 @@ import com.spring_orm.service.StudentService;
 @Controller
 @EnableTransactionManagement
 public class MyController {
-	
+
 	@Autowired
 	private StudentService service;
-	
+
 	@RequestMapping("/register")
 	public String register() {
-		
-		
+
 		return "register";
 	}
-	
+
 	@RequestMapping("/login")
-	public String login(@ModelAttribute Student student) {
-		
-		
-		service.saveUser(student);
-		
-		System.out.println("Name : "  + student.getName() + "Email : " + student.getEmail() );
+	public String login() {
+
 		return "login";
 	}
+
 	@RequestMapping("/success")
-	public String success() {
-		return "success";
+	public String success(@ModelAttribute Student student) {
+		service.saveUser(student);
+
+		System.out.println("Name : " + student.getName() + "Email : " + student.getEmail());
+
+		return "redirect:/login";
 	}
 
 }

@@ -18,7 +18,7 @@ public class StudentDao {
 		
 		int inserted = 0;
 		
-		inserted = (int) hibernateTemplate.save(student);
+		inserted = (Integer) hibernateTemplate.save(student);
 		
 		return inserted;
 	}
