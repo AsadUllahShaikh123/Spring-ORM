@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.spring_orm.model.Student;
@@ -40,18 +41,23 @@ public class MyController {
 
 		return "redirect:/login";
 	}
-	
-	@RequestMapping("/google")
-	public String getGoogleSite() {
-		
-		return "redirect:https://www.google.com/";
-	}
+
 	@RequestMapping("/youtube")
 	public RedirectView getYoutubeSite() {
 		RedirectView redirect = new RedirectView();
 		
 		redirect.setUrl("https://www.youtube.com/");
 		return redirect;
+	}
+	
+	@RequestMapping("/google")
+	public String searchOnUrl(@RequestParam("keyword") String keyword) {
+		
+//		String url = "https://www.google.com/search?q="+keyword;
+		
+		//Now it will redirect to youtube 
+		String url = "https://www.youtube.com/results?search_query="+keyword;
+		return "redirect:"+url;
 	}
 
 }
