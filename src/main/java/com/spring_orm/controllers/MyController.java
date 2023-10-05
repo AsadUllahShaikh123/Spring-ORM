@@ -5,6 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
@@ -60,4 +61,10 @@ public class MyController {
 		return "redirect:"+url;
 	}
 
+	@RequestMapping("/user/{id}/{name}")
+	public String demo(@PathVariable("id") int id,@PathVariable String name) {
+		System.out.println("Id is " + id);
+		System.out.println("Name is " + name);
+		return "../../index";
+	}
 }
